@@ -28,9 +28,9 @@ class CollinsDownloader(AudioDownloader):
         # self.url = 'http://www.collinsdictionary.com/dictionary/NN-english/'
         # The url is set in the derived French or Spanish classes.
         self.url = None
-        self.base_url = u'http://www.collinsdictionary.com'
-        self.lang = None  # e.g. u'fr'
-        self.lang_code = None  # e.g. u'/fr_/'
+        self.base_url = 'http://www.collinsdictionary.com'
+        self.lang = None  # e.g. 'fr'
+        self.lang_code = None  # e.g. '/fr_/'
         # self.icon_url = self.url
         # self.extras = dict(Source="Collins German")
         # Here the word page url works to get the favicon.

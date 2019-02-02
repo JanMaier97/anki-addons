@@ -32,7 +32,7 @@ class BeolingusDownloader(AudioDownloader):
         # I have seen "text=sink%20{verb}" and the like. The simple text
         # match wasn't good enough.
         # self.text_code = 'text='
-        self.text_re = u'text={0}(?:%20{{([a-zA-Z ]+)}})?$'
+        self.text_re = 'text={0}(?:%20{{([a-zA-Z ]+)}})?$'
         self.services_dict = {'de': 'de-en', 'en': 'en-de', 'es': 'es-de'}
         # Mapping of languages to "services".
         # We can get pronunciations for the keys in this

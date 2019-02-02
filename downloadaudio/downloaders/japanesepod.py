@@ -28,7 +28,7 @@ def equals_kana(kana1, kana2):
     u"""Check whether two kana strings represent the same sound
 
     Compare two strings, converting katakana to hiragana first. That
-    means that for example equals_kana(u'キ', u'き') is True.
+    means that for example equals_kana('キ', 'き') is True.
     """
     # dict translating katakana to corresponding hiragana codepoints
     katakana_to_hiragana = dict((i, i - 0x60) for i in range(0x30A1, 0x30F7))
@@ -45,8 +45,8 @@ class JapanesepodDownloader(AudioDownloader):
         self.icon_url = 'http://www.japanesepod101.com/'
         self.url = 'http://assets.languagepod101.com/' \
             'dictionary/japanese/audiomp3.php?'
-        self.wwwjdic_url = u'http://www.edrdg.org/cgi-bin/wwwjdic/wwwjdic' \
-            u'?1MUJ{kana}_2_50'
+        self.wwwjdic_url = 'http://www.edrdg.org/cgi-bin/wwwjdic/wwwjdic' \
+            '?1MUJ{kana}_2_50'
         self.extras = {'Source': 'JapanesePod'}
         self.field_data = None
 
@@ -142,11 +142,11 @@ class JapanesepodDownloader(AudioDownloader):
             # string is quoted twice, so unquote it once
             audio = urllib.parse.unquote(audio)
             entry = entry.text
-            popular = u'(P)' in entry or u'(P)' in lbl.text
+            popular = '(P)' in entry or '(P)' in lbl.text
             # strip "(P)" and similar markers
             entry = re.sub(r'\(.*?\)', '', entry)
             # convert brackets to delimiter (Treat “　” as a space)
-            entry = re.sub(u'[\s《》【】]', ';', entry, flags=re.UNICODE)
+            entry = re.sub('[\s《》【】]', ';', entry, flags=re.UNICODE)
             for reading in entry.split(';'):
                 if reading == self.field_data.kana:
                     hits[audio] = popular

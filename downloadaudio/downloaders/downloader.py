@@ -75,7 +75,7 @@ class AudioDownloader(object):
         # False) we use the current directory.
         self.site_icon = None
         # The sites’s favicon.
-        self.file_extension = u'.mp3'
+        self.file_extension = '.mp3'
         # Most sites have mp3 files.
 
     def download_files(self, field_data):
@@ -210,7 +210,7 @@ class AudioDownloader(object):
         # get_data raises all kinds of exceptions that fly through
         # here.)
         tfile = tempfile.NamedTemporaryFile(
-            delete=False, prefix=u'anki_audio_', suffix=self.file_extension)
+            delete=False, prefix='anki_audio_', suffix=self.file_extension)
         tfile.write(data)
         tfile.close()
         return tfile.name

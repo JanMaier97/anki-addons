@@ -41,7 +41,7 @@ class LeoDownloader(AudioDownloader):
         # And, yes, they use ch for Chinese.
         self.language_dict = {'de': 'de', 'en': 'en', 'fr': 'fr', 'es': 'es'}
         # As of 2015-01-26, leo.org has no audio for these languages:
-        # 'it': 'it', 'zh': 'ch', 'ru': 'ru', 'pt': 'pt', 'pl': 'pl'
+        # 'it': 'it', 'zh': 'ch', 'r': 'ru', 'pt': 'pt', 'pl': 'pl'
         self.site_icon_dict = {}
         # We should keep a number of site icons handy, with the right
         # flag for the request.

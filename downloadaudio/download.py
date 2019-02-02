@@ -40,7 +40,7 @@ from PyQt5.QtWidgets import QAction, QMenu
 
 
 from aqt import mw
-from aqt.utils import tooltip, showInfo
+from aqt.utils import tooltip
 from anki.hooks import addHook
 
 from .downloaders import downloaders

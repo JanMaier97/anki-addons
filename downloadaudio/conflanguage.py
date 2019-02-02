@@ -122,4 +122,4 @@ def maybe_ask_language():
 addHook("profileLoaded", maybe_ask_language)
 dconf.Ui_Dialog.setupUi = wrap(dconf.Ui_Dialog.setupUi, setup_ui)
 DeckConf.loadConf = wrap(DeckConf.loadConf, load_conf)
-Deckonf.saveConf = wrap(DeckCof.saveConf, save_conf, 'before')
+Deckonf.saveConf = wrap(DeckConf.saveConf, save_conf, 'before')

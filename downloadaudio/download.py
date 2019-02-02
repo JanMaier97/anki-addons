@@ -40,7 +40,7 @@ from PyQt5.QtWidgets import QAction, QMenu
 
 
 from aqt import mw
-from aqt.utils import tooltip
+from aqt.utils import tooltip, showInfo
 from anki.hooks import addHook
 
 from .downloaders import downloaders
@@ -195,25 +195,24 @@ def download_on():
     mw.manual_download_action.setEnabled(True)
 
 
-def editor_download_editing(self):
-    u"""Do the download when we are in the note editor."""
-    self.saveNow()
-    download_for_note(ask_user=True, note=self.note, editor=self)
-    # Fix for issue #10.
-    self.stealFocus = True
-    self.loadNote()
-    self.stealFocus = False
+def on_download_button_clicked(editor):
+    editor.saveNow(lambda e=editor: _on_download_button_clicked(e))
 
+def _on_download_button_clicked(editor):
+    """Do the download when we are in the note editor."""
+    download_for_note(ask_user=True, note=editor.note, editor=editor)
+    editor.stealFocus = True
+    editor.loadNote()
+    editor.stealFocus = False
 
-def editor_add_download_editing_button(self):
+def setup_buttons(buttons, editor):
     """Add the download button to the editor"""
-    dl_button = self._addButton(
-        "download_audio",
-        lambda self=self: editor_download_editing(self),
-        tip=u"Download audio…")
-    dl_button.setIcon(
-        QIcon(os.path.join(icons_dir, 'download_note_audio.png')))
-
+    dl_button = editor.addButton(
+            os.path.join(icons_dir, 'download_note_audio.png'),
+            "download_audio",
+            lambda e=editor: on_download_button_clicked(e),
+            "Download audio...")
+    return buttons + [dl_button]
 
 # Either reuse an edit-media sub-menu created by another add-on
 # (probably the mhwave (ex sweep) add-on by Y.T.) or create that
@@ -264,4 +263,4 @@ mw.edit_media_submenu.addAction(mw.manual_download_action)
 # download_off()
 
 
-addHook("setupEditorButtons", editor_add_download_editing_button)
+addHook("setupEditorButtons", setup_buttons)
